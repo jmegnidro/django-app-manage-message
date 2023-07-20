@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title  %} {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/iofrm-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/iofrm-theme13.css' %}">
+</head>
+<body>
+<div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+                    <h3>Bienvenue chez US Informatique</h3>
+                    <p>Nous vous accompagnons dans l'univers des campagnes publliciatires<br><br>
+                       Et il ne s'avait pas du tout que s"était possible et ils l'ont fait, alors pour quoi ne pas s'engager avec nous aussi dans l'univers de la messagerie</p>
+                </div>
+</div>
+{% block content  %}{% endblock %}
+
+
+
+<script src="{% static '/js/jquery.min.js' %}"></script>
+<script src="{% static '/js/popper.min.js' %}"></script>
+<script src="{% static '/js/bootstrap.min.js' %}"></script>
+<script src="{% static '/js/main.js' %}"></script>
+</body>
+
+</html>

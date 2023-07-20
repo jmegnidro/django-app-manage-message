@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+
+
+.container {
+  display: align-items;
+  justify-content: center;
+}
+</style>
+
+<br>
+<br>
+
+
+    <div class="container  mx-auto px-2">
+        <div class="flex flex-wrap">
+            <div class="flex items-center py-4 w-full">
+                <div class="w-full">
+                    <div class="">
+                        <div class="flex flex-wrap justify-between">
+                            <div class="items-center ">
+                                <h1 class="font-semibold text-xl mb-1 block dark:text-slate-100">Msg WhatSapp</h1>
+                                <ol class="list-reset flex text-sm">
+                                    <li><a href="#" class="text-gray-500">US Informatique</a></li>
+                                    <li><span class="text-gray-500 mx-2">/</span></li>
+                                    <li class="text-gray-500">Msg WhatSapp</li>
+                                    <li><span class="text-gray-500 mx-2">/</span></li>
+                                    <li class="text-blue-600 hover:text-blue-700">Msg WhatSapp </li>
+                                </ol>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--end container-->
+
+   <div class="container mx-auto px-6 min-h-[calc(100vh-138px)]  relative pb-14 ">
+    <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4  ">
+        <div class="sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">WhatSapp Multidiffusion</h4>
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <div id="error_message" class="bg-red-400 text-white mb-3 rounded ease-out duration-500">
+
+                    </div>
+                    <form action="{% url 'emails:whatdiffusion' %}" method="POST">
+                                        {% csrf_token %}
+
+                        <div class="mb-2 input_field">
+                            <label for="id_number" class="mb-2 label">Numero destinataire (selectionener Plusieurs)</label>
+                            <input class="form-control" type="number" id="id_number" name="recipient" placeholder="Numero de destination">
+                        </div>
+                        <div class="mb-2 input_field">
+                            <label for="id_num" class="mb-2 label">Numero d'Envoi</label>
+                            <input class="form-control" type="number" id="id_num" name="sender" placeholder="numero d'envoi de message">
+                        </div>
+                        <div class="input_field mb-2">
+                            <label for="id_message" class="mb-2 label">Message</label>
+                            <textarea id="id_message" name="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rédiger votre message ici...."></textarea>
+                        </div>
+                        <button type="submit" class="px-3 py-2 lg:px-4 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600">Envoyé Maintenant</button>
+                    </form>
+                </div><!--end card-body-->
+            </div> <!--end card-->
+        </div><!--end col-->
+    </div><!--end inner-grid-->
+    <!-- footer -->
+</div><!--end container-->
+
+    {% endblock %}
