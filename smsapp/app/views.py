@@ -1,9 +1,25 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import render
-from .forms import EmaailCampagneForm, MessageBoxForm, MessageBoxFormMutliple
-from .models import Messages, MessagesDiffusion, MessagesWhatsapp
+from django.shortcuts import render, redirect
+from .forms import EmaailCampagneForm, MessageBoxForm, MessageBoxFormMutliple, ClientRegisterSms
+from .models import Messages, MessagesDiffusion, MessagesWhatsapp, ClientBoxs
+
+
+def enregistrer(request):
+    if request.method == 'POST':
+        client = ClientRegisterSms(request.POST)
+        if client.is_valid():
+            client.save()
+        return render(request, 'client/voirclient.html')
+    else:
+        client = ClientRegisterSms()
+    return render(request, 'client/client.html', {"client": client})
+
+
+def voir(request):
+    doms = ClientBoxs.objects.all()
+    return render(request, 'client/voirclient.html', {"doms": doms})
 
 
 def monosms(request):

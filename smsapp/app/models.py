@@ -13,21 +13,25 @@ class Entreprise(models.Model):
 
 
 class ClientBoxs(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, blank=True, null=True)
+    last_name = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(max_length=100)
     telephone = PhoneNumberField()
-    address = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.telephone)
+
+    class Meta:
+        ordering = ['-created_at']
 
 
 class Messages(models.Model):
     recipient = models.ForeignKey(ClientBoxs, on_delete=models.CASCADE)
     sender = models.ForeignKey(Entreprise, on_delete=models.CASCADE)
     corps = models.TextField(max_length=160)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.corps
@@ -54,6 +58,7 @@ class MessagesDiffusion(models.Model):
     recipient = models.ManyToManyField(ClientBoxs)  # Correction : supprimer primary_key={}
     sender = models.ForeignKey(Entreprise, on_delete=models.CASCADE)
     corps = models.TextField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.corps
@@ -76,13 +81,13 @@ class MessagesDiffusion(models.Model):
                     print(message)
                 except Exception as e:
                     print(f"Erreur lors de l'envoi du message au destinataire {recipient}: {str(e)}")
-        # Ne rien retourner si le nombre de destinataires est supérieur à 100
 
 
 class MessagesWhatsapp(models.Model):
     recipient = models.ManyToManyField(ClientBoxs)
     sender = models.ForeignKey(Entreprise, on_delete=models.CASCADE)
     corps = models.TextField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.corps
@@ -109,6 +114,7 @@ class EmailCampagne(models.Model):
     message = models.TextField(max_length=1000)
     attachement_piece = models.FileField(blank=True, null=True, verbose_name='piece jointe',
                                          upload_to='emailattachement')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.subject
