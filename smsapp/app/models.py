@@ -4,12 +4,12 @@ from twilio.rest import Client
 
 
 class Entreprise(models.Model):
-    telephon = PhoneNumberField()
+    telephone = PhoneNumberField()
     email = models.EmailField()
     name = models.CharField(max_length=45)
 
     def __str__(self):
-        return str(self.telephon)
+        return str(self.telephone)
 
 
 class ClientBoxs(models.Model):
@@ -22,7 +22,6 @@ class ClientBoxs(models.Model):
 
     def __str__(self):
         return str(self.telephone)
-
     class Meta:
         ordering = ['-created_at']
 
@@ -32,6 +31,7 @@ class Messages(models.Model):
     sender = models.ForeignKey(Entreprise, on_delete=models.CASCADE)
     corps = models.TextField(max_length=160)
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.corps
@@ -44,7 +44,7 @@ class Messages(models.Model):
 
             message = client.messages.create(
                 body=f"{self.corps}",
-                from_=f'{self.sender.telephon}',
+                from_=f'{self.sender.telephone}',
                 to=f'+{self.recipient.telephone}'
             )
             print(message)
@@ -55,10 +55,11 @@ class Messages(models.Model):
 
 
 class MessagesDiffusion(models.Model):
-    recipient = models.ManyToManyField(ClientBoxs)  # Correction : supprimer primary_key={}
+    recipient = models.ManyToManyField(ClientBoxs)
     sender = models.ForeignKey(Entreprise, on_delete=models.CASCADE)
     corps = models.TextField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.corps
@@ -81,6 +82,7 @@ class MessagesDiffusion(models.Model):
                     print(message)
                 except Exception as e:
                     print(f"Erreur lors de l'envoi du message au destinataire {recipient}: {str(e)}")
+        # Ne rien retourner si le nombre de destinataires est supérieur à 100
 
 
 class MessagesWhatsapp(models.Model):
@@ -88,6 +90,7 @@ class MessagesWhatsapp(models.Model):
     sender = models.ForeignKey(Entreprise, on_delete=models.CASCADE)
     corps = models.TextField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.corps
@@ -100,7 +103,7 @@ class MessagesWhatsapp(models.Model):
 
             message = client.messages.create(
                 body=f"{self.corps}",
-                from_=f'{self.sender.telephon}',
+                from_=f'{self.sender.telephone}',
                 to=f'+{self.recipient.telephone}'
             )
             print(message)
@@ -115,6 +118,7 @@ class EmailCampagne(models.Model):
     attachement_piece = models.FileField(blank=True, null=True, verbose_name='piece jointe',
                                          upload_to='emailattachement')
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return self.subject

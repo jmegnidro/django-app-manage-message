@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .forms import EmaailCampagneForm, MessageBoxForm, MessageBoxFormMutliple, ClientRegisterSms
@@ -35,12 +34,13 @@ def monosms(request):
 # mutlidifusion vues
 def multidifusionsms(request):
     if request.method == 'POST':
-        forms = MessageBoxFormMutliple(request.POST)
-        if forms.is_valid():
-            forms.save()
+        diffusions = MessageBoxFormMutliple(request.POST)
+        if diffusions.is_valid():
+            diffusions.save()
+        return redirect('us', groupe_id=diffusions.instance.id)
     else:
-        forms = MessageBoxFormMutliple()
-    return render(request, 'sms/multidiffusion.html', {"forms": forms})
+        diffusions = MessageBoxFormMutliple()
+    return render(request, 'sms/multidiffusion.html', {"diffusions": diffusions})
 
 
 def contact_view(request):
@@ -52,7 +52,7 @@ def contact_view(request):
             email_message = form.cleaned_data['message']
             attachement_piece = form.cleaned_data['attachement_piece']
             send_mail(email_subject, email_message, attachement_piece, settings.CONTACT_EMAIL, settings.ADMIN_EMAIL)
-            return render(request, 'home/success.html')
+            return redirect('us')
     form = EmaailCampagneForm()
     context = {'form': form}
     return render(request, 'home/contact.html', context)
@@ -75,11 +75,6 @@ def whatsapp(request):
         'querysets': querysets
     }
     return render(request, 'dash/whtasapp.html', contexte)
-
-
-def createsmsdiffusuion(request):
-    # la requete pour prendre en compte le formulaire
-    return render(request, 'sms/multidiffusion.html')
 
 
 def whtasapp(request):

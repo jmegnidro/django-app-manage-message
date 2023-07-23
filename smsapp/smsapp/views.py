@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from account.models import CustomUser
@@ -13,16 +14,18 @@ def home(request):
     mail_whatsapp = MessagesWhatsapp.objects.all().count()
     customer_count = CustomUser.objects.all().count()
     sms_sender_counts = Entreprise.objects.all().count()
+    adelines = Messages.objects.all()[:5]
 
     context = {
         "total_client_counts": total_client_counts,
-        "sms_count":sms_count,
+        "sms_count": sms_count,
         "email_counts": email_counts,
-        "whatsapp_counts":whatsapp_counts,
-        "sms_count_diffusion":sms_count_diffusion,
+        "whatsapp_counts": whatsapp_counts,
+        "sms_count_diffusion": sms_count_diffusion,
         "mail_whatsapp": mail_whatsapp,
-        "customer_count":customer_count,
-        "sms_sender_counts":sms_sender_counts
+        "customer_count": customer_count,
+        "sms_sender_counts": sms_sender_counts,
+        "adelines": adelines
     }
     return render(request, 'home/index.html', context)
 

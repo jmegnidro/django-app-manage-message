@@ -36,7 +36,7 @@
                         <h3 class="text-slate-800 dark:text-slate-200 text-center text-2xl md:text-2xl lg:text-lg xl:text-2xl font-bold leading-8 py-2 md:py-2 lg:py-1 xl:py-2"><span class="inline-block xl:block">US INFORMATIQUE</span>
                         <div class="text-center text-slate-400 text-base md:text-base lg:text-sm xl:text-base font-medium py-3">Des solutions informatiques des professionnels pour les professionnels</div>
                         <div class="text-center py-3 md:mb-3 lg:mb-0 xl:mb-3">
-                            <button class="px-3 py-2 lg:px-4 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600">Ouvrir une Campagne</button>
+                            <button class="px-3 py-2 lg:px-4 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600">A PROPOS</button>
                         </div>
                     </div>
                     <div class="md:col-span-4 lg:col-span-2 xl:col-span-4 block dark:hidden">
@@ -167,7 +167,7 @@
             <div class="sm:col-span-1  md:col-span-2 lg:col-span-4 xl:col-span-1 ">
                 <div class="h-full card">
                     <div class="card-header">
-                        <h4 class="font-medium dark:text-slate-300">Browser Used By Users</h4>
+                        <h4 class="font-medium dark:text-slate-300">Recents Message</h4>
                     </div>
                     <div class="flex flex-col card-body">
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -177,96 +177,42 @@
                                         <thead class="bg-gray-50 dark:bg-gray-700">
                                             <tr>
                                                 <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                                    Browser
+                                                    DATE
                                                 </th>
                                                 <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                                    Sessions
+                                                    RECIPEINTS
                                                 </th>
                                                 <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                                    Bounce Rate
+SENDER
                                                 </th>
                                                 <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                                    Transactions
+                                                    MESSAGES
                                                 </th>
                                             </tr>
                                         </thead>
+                                        {% for adeline in adelines %}
                                         <tbody>
                                             <!-- 1 -->
                                             <tr class="bg-white border-b border-dashed dark:bg-gray-800 dark:border-gray-700">
                                                 <td class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                                    <img src="assets/images/logos/chrome.png" alt="" class="mr-2 h-5 inline-block">Chrome
+                                                    <img src="assets/images/logos/chrome.png" alt="" class="mr-2 h-5 inline-block">{{ adeline.created_at }}
                                                 </td>
                                                 <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    10853<small class="text-gray-400">(52%)</small>
+                                                   {{ adeline.recipient }}
                                                 </td>
                                                 <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    52.80%
+                                                    {{ adeline.sender }}
                                                 </td>
                                                 <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    566 <small class="text-gray-400">(92%)</small>
+                                                    {{ adeline.corps }}
                                                 </td>
                                             </tr>
                                             <!-- 2 -->
-                                            <tr class="bg-white border-b border-dashed dark:bg-gray-800 dark:border-gray-700">
-                                                <td class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                                    <img src="assets/images/logos/in-explorer.png" alt="" class="mr-2 h-5 inline-block">Explorer
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    10853<small class="text-gray-400">(52%)</small>
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    52.80%
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    566 <small class="text-gray-400">(92%)</small>
-                                                </td>
-                                            </tr>
-                                            <!-- 3 -->
-                                            <tr class="bg-white border-b border-dashed dark:bg-gray-800 dark:border-gray-700">
-                                                <td class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                                    <img src="assets/images/logos/safari.png" alt="" class="mr-2 h-5 inline-block">Safari
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    10853<small class="text-gray-400">(52%)</small>
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    52.80%
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    566 <small class="text-gray-400">(92%)</small>
-                                                </td>
-                                            </tr>
-                                            <!-- 4 -->
-                                            <tr class="bg-white border-b border-dashed dark:bg-gray-800 dark:border-gray-700">
-                                                <td class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                                    <img src="assets/images/logos/mozilla.png" alt="" class="mr-2 h-5 inline-block">Mozilla
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    10853<small class="text-gray-400">(52%)</small>
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    52.80%
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    566 <small class="text-gray-400">(92%)</small>
-                                                </td>
-                                            </tr>
-                                            <!-- 5 -->
-                                            <tr class="bg-white dark:bg-gray-800">
-                                                <td class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                                    <img src="assets/images/logos/opera.png" alt="" class="mr-2 h-5 inline-block">Opera
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    10853<small class="text-gray-400">(52%)</small>
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    52.80%
-                                                </td>
-                                                <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                    566 <small class="text-gray-400">(92%)</small>
-                                                </td>
-                                            </tr>
+
+
                                         </tbody>
+                                        {% endfor  %}
+
                                     </table>
                                 </div>
                             </div>

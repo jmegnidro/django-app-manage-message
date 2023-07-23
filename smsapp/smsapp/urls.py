@@ -8,7 +8,7 @@ from .views import home, us
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('dashbord/', home, name='home'),
-                  path('app/', include('app.urls')),
+                  path('', include('app.urls')),
                   path('account/', include('account.urls')),
                   path('', us, name='us')
 

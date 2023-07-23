@@ -605,6 +605,9 @@
                                         <th scope="col" class="px-6 py-3">
                                             MESSAGE
                                         </th>
+                                      <th scope="col" class="px-6 py-3">
+                                            DATE D'ENVOI
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody> {% for element in forms %}
@@ -628,6 +631,7 @@
                                         <td class="px-6 py-6">
                                             {{ element.corps }}
                                         </td>
+                                      <td class="px-6 py-4">{{ element.created_at }}</td>
                                       {% endfor %}
                                  {% for element in querysets %}
                                     <tr
@@ -649,6 +653,8 @@
                                         <td class="px-6 py-4">
                                             {{element.corps }}
                                         </td>
+                                  <td class="px-6 py-4">{{ element.created_at }}</td>
+
                                 {% endfor %}
 
                                 </tbody>
